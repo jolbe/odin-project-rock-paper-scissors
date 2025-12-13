@@ -54,5 +54,20 @@ button {
   }
   &:active {
     background: var(--color-primary-active);
+
+footer {
+  font-size: 1.8rem;
+  text-align: center;
+  padding: 20px;
+
+  & svg {
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: text-bottom;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: rotate(360deg) scale(1.2);
+    }
   }
 }
