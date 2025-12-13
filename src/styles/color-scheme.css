@@ -1,0 +1,64 @@
+:root {
+  /* Base palette — neutrals / blues */
+  --blue-900: #0b1c2c;
+  --blue-800: #132f45;
+  --blue-700: #1c4a63;
+
+  /* Base palette — brand colors (originals) */
+  --teal-500: #2a9d8f;
+  --orange-300: #f4a261;
+  --yellow-400: #e9c46a;
+  --red-400: #e76f51;
+
+  /* Base palette — dark-mode harmonized brand colors */
+  --teal-500-dark: #2a8c81;
+  --teal-600-dark: #24766e;
+  --teal-700-dark: #1e615a;
+
+  --orange-300-dark: #d98a52;
+  --orange-400-dark: #c67b48;
+  --orange-500-dark: #b16c3f;
+
+  --yellow-400-dark: #cda85c;
+  --yellow-500-dark: #b89750;
+  --yellow-600-dark: #a48545;
+
+  --red-400-dark: #d3634a;
+
+  /* Text */
+  --white: #ffffff;
+  --black: #000000;
+}
+:root {
+  --color-bg: var(--blue-900);
+  --color-surface: var(--blue-800);
+  --color-text: var(--white);
+
+  --color-primary: var(--teal-500-dark);
+  --color-primary-hover: var(--teal-600-dark);
+  --color-primary-active: var(--teal-700-dark);
+
+  --color-secondary: var(--orange-300-dark);
+  --color-secondary-hover: var(--orange-400-dark);
+  --color-secondary-active: var(--orange-500-dark);
+
+  --color-accent: var(--yellow-400-dark);
+  --color-accent-hover: var(--yellow-500-dark);
+  --color-accent-active: var(--yellow-600-dark);
+
+  --color-danger: var(--red-400-dark);
+}
+:root.light {
+  --color-bg: white;
+  --color-surface: #f5f5f5;
+  --color-text: #111;
+
+  --color-primary: var(--teal-500);
+  --color-secondary: var(--orange-300);
+  --color-accent: var(--yellow-400);
+  --color-danger: var(--red-400);
+}
+:root {
+  font-family: "Roboto", sans-serif;
+  font-size: 62.5%;
+}
