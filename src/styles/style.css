@@ -16,7 +16,6 @@ body {
 header,
 footer {
   background-color: var(--color-surface);
-  flex: 0 0 100px;
 }
 header {
   font-family: "Alfa Slab One", serif;
@@ -34,26 +33,52 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 40px;
   gap: 48px;
-}
-.scores {
-  width: 250px;
-  display: flex;
-  justify-content: space-evenly;
-}
-button {
-  background: var(--color-primary);
-  color: var(--color-text);
-  font-size: 48px;
-  padding: 24px;
-  border: 2px solid var(--teal-700-dark);
-  border-radius: 10px;
 
-  &:hover {
-    background: var(--color-primary-hover);
+  & .scoreboard {
+    text-align: center;
   }
-  &:active {
-    background: var(--color-primary-active);
+  & .scores {
+    width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+
+    & .sign {
+      font-size: clamp(5rem, 9vw, 7.8rem);
+    }
+  }
+
+  & .controls {
+    display: flex;
+    gap: 16px;
+
+    button {
+      background: var(--color-primary);
+      color: var(--color-text);
+      font-size: 7.8rem;
+      padding: 32px;
+      border: 2px solid var(--teal-700-dark);
+      border-radius: 10px;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        background: var(--color-primary-hover);
+        transform: scale(1.05);
+      }
+      &:active {
+        background: var(--color-primary-active);
+      }
+
+      /* make buttons smaller on phone screens */
+      @media screen and (max-width: 600px) {
+        font-size: 5rem;
+        padding: 16px;
+      }
+    }
+  }
+}
 
 footer {
   font-size: 1.8rem;
