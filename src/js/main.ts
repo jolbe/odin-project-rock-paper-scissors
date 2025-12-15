@@ -84,6 +84,12 @@ const elements = {
     info: getRequiredElement(".scoreboard > h2"),
     explanation: getRequiredElement(".scoreboard > p"),
   },
+  gameOver: {
+    overlay: getRequiredElement("#overlay"),
+    modal: getRequiredElement(".modal"),
+    msg: getRequiredElement(".modal > p"),
+    playAgain: getRequiredElement("#playAgain"),
+  },
 };
 
 // Add an event listener to the buttons that call your playRound function
@@ -92,7 +98,7 @@ elements.controls.buttons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     // Don't allow to keep playing on finished game
     if (isGameOver()) {
-      showPlayAgainModal();
+      showGameOverModal();
       return;
     }
 
@@ -106,7 +112,8 @@ elements.controls.buttons.forEach((btn) => {
 
     // After every round we need to check if game is over
     if (isGameOver()) {
-      showPlayAgainModal();
+      elements.gameOver.msg.textContent = roundResult.msg;
+      showGameOverModal();
     }
   });
 });
@@ -149,6 +156,10 @@ function getEmoji(selection: string): string {
     return EMOJI_MAP[selection as Choice];
   }
 
+  if (selection === "?") {
+    return "?";
+  }
+
   return "";
 }
 
@@ -162,10 +173,39 @@ function updateScore(element: HTMLElement, score: number) {
 function isGameOver() {
   return humanScore >= GAME_OVER_AT || computerScore >= GAME_OVER_AT;
 }
-function showPlayAgainModal() {
-  console.log("let's see if it gets updated");
-  // alert("Game over!\nPlay again?");
+function showGameOverModal() {
+  elements.gameOver.overlay.classList.remove("hidden");
 }
-function handleGameOver() {
-  alert("show dialog");
+
+function hideGameOverModal() {
+  elements.gameOver.overlay.classList.add("hidden");
+}
+
+elements.gameOver.overlay.addEventListener("click", (e) => {
+  if (e.target === elements.gameOver.overlay) {
+    hideGameOverModal();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    hideGameOverModal();
+  }
+});
+
+elements.gameOver.playAgain.addEventListener("click", resetGame);
+
+function resetGame() {
+  humanScore = 0;
+  computerScore = 0;
+
+  updateSign(elements.scores.player, "?");
+  updateScore(elements.scores.player, humanScore);
+  updateSign(elements.scores.computer, "?");
+  updateScore(elements.scores.computer, computerScore);
+  elements.round.info.textContent = "Chose your weapon";
+  elements.round.explanation.textContent =
+    "First to score 5 points wins the game";
+
+  hideGameOverModal();
 }
